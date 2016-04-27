@@ -9,6 +9,8 @@ using System.Net.Http.Headers;
 using LeagueTable.API;
 using Newtonsoft.Json;
 using LeagueTable.Models;
+using LeagueTable.ViewModels;
+using LeagueTable.Calculations;
 
 namespace LeagueTable.Controllers
 {
@@ -18,7 +20,8 @@ namespace LeagueTable.Controllers
         {
             string t = await Access.getLeagueTable();
             LogData LeagueTable = JsonConvert.DeserializeObject<LogData>(t);
-            return View(LeagueTable);
+            List<WinOrLoseViewModel> ViewModel = Calculate.whoCanWinOrLose(LeagueTable);
+            return View(ViewModel);
         }
 
         public async Task<IActionResult> log()

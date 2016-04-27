@@ -1,4 +1,4 @@
-﻿@model LeagueTable.Models.LogData
+﻿@model IEnumerable<LeagueTable.ViewModels.WinOrLoseViewModel>
 
 @{
     ViewData["Title"] = "Premier League Log";
@@ -7,28 +7,51 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>#</th>
             <th>Team</th>
-            <th>Wins</th>
-            <th>Draws</th>
-            <th>Losses</th>
-            <th>For</th>
-            <th>Against</th>
-            <th>GD</th>
+            <th>Games Played</th>
             <th>Points</th>
+            <th>Available Points</th>
+            <th>Maximum Possible Points</th>
+            <th>Can still win league?</th>
+            <th>Can still be relegated?</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var s in Model.standing)
+        @foreach (var s in Model)
         {
             <tr>
+                @if (s.areRelegated)
+                {
+                   <td>R</td>
+                }
+                else
+                {
+                    <td>@s.position</td>
+
+                }
                 <td>@s.teamName</td>
-                <td>@s.wins</td>
-                <td>@s.draws</td>
-                <td>@s.losses</td>
-                <td>@s.goals</td>
-                <td>@s.goalsAgainst</td>
-                <td>@s.goalDifference</td>
+                <td>@s.playedGames</td>
                 <td>@s.points</td>
+                <td>@s.availablePoints</td>
+                <td>@s.maxPoints</td>
+                @if (s.canWinLeague)
+                {
+                    <td class="success">Yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+                @if (s.canBeRelegated)
+                {
+                    <td class="danger">Yes</td>
+                }
+                else
+                {
+                    <td>No</td>
+
+                }
             </tr>
         }
     </tbody>
