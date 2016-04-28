@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using LeagueTable.API;
 using Newtonsoft.Json;
 using LeagueTable.Models;
@@ -28,7 +23,7 @@ namespace LeagueTable.Controllers
         {
             string t = await Access.getLeagueTable();
             LogData LeagueTable = JsonConvert.DeserializeObject<LogData>(t);
-            return View(LeagueTable);
+            return View("Log", LeagueTable);
         }
 
         public IActionResult Contact()
