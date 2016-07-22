@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
 using LeagueTable.API;
 using Newtonsoft.Json;
 using LeagueTable.Models;
 using LeagueTable.ViewModels;
 using LeagueTable.Calculations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LeagueTable.Controllers
 {
